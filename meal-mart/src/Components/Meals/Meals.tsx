@@ -1,8 +1,20 @@
-import React from 'react'
+import React, {useContext, useEffect} from 'react'
+import {useAppContext} from '../../Context/context'
 
-const Meals = () => {
+
+interface AppContextProps {
+  meals: any[];
+  getMeals: (url: string) => void;
+}
+const Meals:React.FC = () => {
+  const {meals, getMeals} = useAppContext() as AppContextProps;
+
+useEffect(()=> {
+  getMeals("https://jsonplaceholder.typicode.com/posts");
+},[])
+  console.log("meals",meals)
   return (
-    <div></div>
+    <div>Meal Component</div>
   )
 }
 
