@@ -14,16 +14,20 @@ const AppContext = React.createContext<unknown | undefined>(undefined);
 
 const AppProvider = ({ children }:ButtonProps) => {
     const [meals, setMeals] = React.useState<Record<string, any>>([]);
+    const randomMealUrl = "www.themealdb.com/api/json/v1/1/lookup.php?i=52772"
+    const allMealsUrl = "https://www.themealdb.com/api/json/v1/1/search.php?s=a"
     const getMeals = async (url: string) => {
         try{
-            const res = await axios.get(url)
-            setMeals(res.data);
+            const {data} = await axios.get(url)
+            // console.log(res.json())
+            setMeals(data.meals);
         }catch(err) {
             console.log(err)
         }
     }
     React.useEffect(() => {
-        console.log("use effect")
+        getMeals(allMealsUrl)
+        console.log("meals", meals)
     }, [])
      
   return (
