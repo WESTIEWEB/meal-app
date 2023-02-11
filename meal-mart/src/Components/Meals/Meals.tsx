@@ -1,40 +1,141 @@
-import React, {useContext, useEffect} from 'react'
-import {useAppContext} from '../../Context/context'
-import {makeStyles} from '@material-ui/core/styles'
-import Container from '@material-ui/core/Container';
+import React, { useContext, useEffect } from "react";
+import { useAppContext } from "../../Context/context";
+import {BsHandThumbsUp} from 'react-icons/bs';
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import Container from "@material-ui/core/Container";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    '& h1': {
+      fontWeight: '700 bold',
+    }
   },
+  card: {
+    display: "flex",
+    flelexDirection: "row",
+    flexWrap: "wrap",
+    width: "100%",
+    justifyContent: "center",
+    gridGap: "1.5rem",
+    margin: '2em'
+  },
+  cards: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    width: '30%',
+    height: '20% !important',
+    boxShadow: '0 0 10px 0 rgba(0,0,0,0.2)',   
+  },
+  footer: {
+    display: "flex",
+    flexDirection: "row",
+    width: "100%",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "0.5em",
+    '& h4': {
+      // height: '2em',
+      width: '40%',
+      // margin: 'auto',
+      // textAlign: 'center',
+      fontWeight: '400',
+      color: '#000',
+      fontFamily: 'open sans',
+      fontSize: '0.8rem',
+    },
+    '& button': {
+      width: '20%',
+      maxHeight: '2em',
+      backgroundColor: 'transparent',
+      border: 'none',
+      transition: 'all 0.3s ease',
+    },
+    '& button:hover': {
+      color: "f00",
+      transform: 'translateY(+2px)'
+    }
+  }
+  ,
+  img: {
+    width: "100%",
+    height: "100%",
+    cursor: "pointer",
+  },
+  '@media (max-width: 600px)': {
+    card: {
+      flexDirection: 'column',
+      alignItems: 'center',
+    },
+    cards: {
+      width: '70%',
+    }
+  },
+  '@media (max-width: 900px)': {
+    cards: {
+      width: '45%',
+    }
+  }
 }));
 interface AppContextProps {
   meals: any[];
+  loading: boolean;
   getMeals: (url: string) => void;
 }
-const Meals:React.FC = () => {
-  const {meals, getMeals} = useAppContext() as AppContextProps;
+const Meals: React.FC = () => {
+  const { meals, getMeals, loading } = useAppContext() as AppContextProps;
   const classes = useStyles();
-  console.log("meals", meals)
+  console.log("meals", meals);
+
+  if(loading){
+    return (
+      <Container className={classes.root}>
+        <h4>Loading...</h4>
+      </Container>
+    )
+  }
+
+  if(meals.length === 0) {
+    return (
+      <Container className={classes.root}>
+        <h4>No Meals Matched Your Search Tearm. Please try again</h4>
+      </Container>
+    )
+  }
   return (
     <Container className={classes.root}>
       <h1>Meals</h1>
-      {meals.map((meal) => {
-        return (
-          <div key={meal.idMeal}>
-            <h2>{meal.strMeal}</h2>
-            <img src={meal.strMealThumb} alt={meal.strMeal} />
-          </div>
-        )
-      })
-      }
-
+      <div className={classes.card}>
+        {meals.map((meal) =>
+         {
+          const {strMealThumb:image,idMeal:id, strCategory:category, strInstructions:instructions, strMeal: title } = meal
+          return (
+            // <div key={meal.idMeal}>
+            //   <h2>{meal.strMeal}</h2>
+            //   <img src={meal.strMealThumb} alt={meal.strMeal} />
+            // </div>
+            <Card variant={"outlined"} className={classes.cards} key={id}>
+              <img className={classes.img} src={image} alt={meal.strMeal} />
+              <footer className={classes.footer}>
+                <h4>{title}</h4>
+                <button><BsHandThumbsUp style={{lineHeight:"1em"}}/></button>
+              </footer>
+            </Card>
+          );
+        })}
+        <div className={classes.card}>
+          <h4>No items</h4>
+        </div>
+      </div>
     </Container>
-  )
-}
+  );
+};
 
 export default Meals;

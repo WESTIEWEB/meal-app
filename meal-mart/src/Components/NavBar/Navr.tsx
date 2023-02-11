@@ -21,8 +21,9 @@ const Navr = () => {
   return (
     <div className="demo_container">
       <div className="demo_logo">
+      <img src={logo} alt="notification" />
         <span>
-          Logo
+          Home
         </span>
       </div>
       <div className="demo_menu-icon" onClick={handleShowNavbar}>
@@ -42,9 +43,6 @@ const Navr = () => {
 
           <li className="li_moblile_s li_mobile_l_u">
             <img src={logo} alt="notification" />
-          </li>
-          <li>
-           home
           </li>
         </ul>
       </div>

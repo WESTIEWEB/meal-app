@@ -14,13 +14,21 @@ const AppContext = React.createContext<unknown | undefined>(undefined);
 
 const AppProvider = ({ children }:ButtonProps) => {
     const [meals, setMeals] = React.useState<Record<string, any>>([]);
+    const [loading, setLoading] = React.useState<boolean>(false);
     const randomMealUrl = "www.themealdb.com/api/json/v1/1/lookup.php?i=52772"
     const allMealsUrl = "https://www.themealdb.com/api/json/v1/1/search.php?s=a"
     const getMeals = async (url: string) => {
+        setLoading(true);
         try{
             const {data} = await axios.get(url)
             // console.log(res.json())
-            setMeals(data.meals);
+            if(data.meals) {
+                const {meals} = data;
+                setMeals(meals)
+            }else {
+                setMeals([]);
+            }
+            setLoading(false);
         }catch(err) {
             console.log(err)
         }
@@ -31,7 +39,11 @@ const AppProvider = ({ children }:ButtonProps) => {
     }, [])
      
   return (
-    <AppContext.Provider value={{name:"hello",meals, getMeals}}>
+    <AppContext.Provider value={{
+        meals, 
+        getMeals,
+        loading
+        }}>
         {children}
     </AppContext.Provider>
   )

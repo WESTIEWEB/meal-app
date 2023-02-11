@@ -1,13 +1,14 @@
 
 .demo_container {
-    max-width: 100%;
-    margin: 0 50px;
+    width: 100%;
+    /* margin: 0 50px; */
     padding: 0 15px;
     display: flex;
     /* margin-bottom: 450px; */
     /* justify-content: space-between; */
     align-items: center;
     height: 100%;
+    border-bottom: 4px solid #8eda4b;
   }
   .demo_container_u ul {
   
