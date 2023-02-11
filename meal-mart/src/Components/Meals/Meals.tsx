@@ -130,9 +130,6 @@ const Meals: React.FC = () => {
             </Card>
           );
         })}
-        <div className={classes.card}>
-          <h4>No items</h4>
-        </div>
       </div>
     </Container>
   );
