@@ -103,7 +103,7 @@ const Search = () => {
             <InputAdornment position="end">
                 <IconButton aria-label="search">
                 {/* <SearchIcon /> */}
-                <SearchIcon />
+                {text && <SearchIcon/>}
                 </IconButton>
             </InputAdornment>
             ),
