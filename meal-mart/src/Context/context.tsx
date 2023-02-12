@@ -14,9 +14,10 @@ const AppContext = React.createContext<unknown | undefined>(undefined);
 
 const AppProvider = ({ children }:ButtonProps) => {
     const [meals, setMeals] = React.useState<Record<string, any>>([]);
+    const [searchTerm, setSearchTerm] = React.useState<string>("");
     const [loading, setLoading] = React.useState<boolean>(false);
     const randomMealUrl = "www.themealdb.com/api/json/v1/1/lookup.php?i=52772"
-    const allMealsUrl = "https://www.themealdb.com/api/json/v1/1/search.php?s=a"
+    const allMealsUrl = "https://www.themealdb.com/api/json/v1/1/search.php?s="
     const getMeals = async (url: string) => {
         setLoading(true);
         try{
@@ -34,15 +35,16 @@ const AppProvider = ({ children }:ButtonProps) => {
         }
     }
     React.useEffect(() => {
-        getMeals(allMealsUrl)
+        getMeals(`${allMealsUrl}${searchTerm}`)
         console.log("meals", meals)
-    }, [])
+    }, [searchTerm])
      
   return (
     <AppContext.Provider value={{
         meals, 
         getMeals,
-        loading
+        loading,
+        setSearchTerm
         }}>
         {children}
     </AppContext.Provider>

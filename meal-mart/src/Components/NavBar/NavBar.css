@@ -2,10 +2,10 @@
 .demo_container {
     width: 100%;
     /* margin: 0 50px; */
-    padding: 0 15px;
+    padding: 0 0.5em;
     display: flex;
     /* margin-bottom: 450px; */
-    /* justify-content: space-between; */
+    justify-content: space-between;
     align-items: center;
     height: 100%;
     border-bottom: 4px solid #8eda4b;
@@ -51,6 +51,7 @@
   .demo_logo {
       display: flex;
       align-items: center;
+      width: 30%;
   }
   .demo_logo span {
       margin-left: 5px;
@@ -157,7 +158,7 @@
       .demo_menu-icon {
         display: block;
         cursor: pointer;
-        margin-left: 85%;
+        /* margin-left: 85%; */
       }
     
       .li_moblile_l {
@@ -224,7 +225,7 @@
           .demo_menu-icon {
               display: block;
               cursor: pointer;
-              margin-left: 76%;
+              /* margin-left: 76%; */
             }
             .nav-elements ul{
               z-index: 2;
@@ -248,7 +249,7 @@
           .demo_menu-icon {
               display: block;
               cursor: pointer;
-              margin-left: 65%;
+              /* margin-left: 65%; */
             }
             .nav-elements ul{
               z-index: 2;

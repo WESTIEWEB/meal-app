@@ -6,10 +6,11 @@ import Card from "@material-ui/core/Card";
 import Container from "@material-ui/core/Container";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  rootContainer: {
     display: "flex",
     flexDirection: "column",
     width: "100%",
+    margin: "auto",
     alignItems: "center",
     justifyContent: "center",
     '& h1': {
@@ -20,16 +21,17 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flelexDirection: "row",
     flexWrap: "wrap",
-    width: "100%",
+    width: "90%",
     justifyContent: "center",
-    gridGap: "1.5rem",
-    margin: '2em'
+    alignItems: "center",
+    gap: "1.5rem",
+    margin: '2.5em 0 2.5em 0'
   },
   cards: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "space-between",
     width: '30%',
     height: '20% !important',
     boxShadow: '0 0 10px 0 rgba(0,0,0,0.2)',   
@@ -96,7 +98,7 @@ const Meals: React.FC = () => {
 
   if(loading){
     return (
-      <Container className={classes.root}>
+      <Container className={classes.rootContainer}>
         <h4>Loading...</h4>
       </Container>
     )
@@ -104,13 +106,13 @@ const Meals: React.FC = () => {
 
   if(meals.length === 0) {
     return (
-      <Container className={classes.root}>
+      <Container className={classes.rootContainer}>
         <h4>No Meals Matched Your Search Tearm. Please try again</h4>
       </Container>
     )
   }
   return (
-    <Container className={classes.root}>
+    <Container className={classes.rootContainer}>
       <h1>Meals</h1>
       <div className={classes.card}>
         {meals.map((meal) =>
