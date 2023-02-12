@@ -21,7 +21,7 @@ const Navr = () => {
   return (
     <div className="demo_container">
       <div className="demo_logo">
-      <img src={logo} alt="notification" />
+        <img src={logo} alt="notification" />
         <span>
           Home
         </span>
