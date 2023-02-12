@@ -10,7 +10,7 @@ import { useAppContext } from '../../Context/context';
 const useStyles = makeStyles((theme) => ({
   searchInput: {
     margin: `2.3em 0 2.3em 0`,
-    background: '#FFFFFF',
+    // background: '#FFFFFF',
     color: '#000000',
     opacity: '0.44',
     borderRadius: '0.5em',
@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
     margin: 'auto',
     height: '5em',
     display: 'flex',
+    backgroundColor: '#FFFFFF',
     justifyContent: 'center',
     '& form': {
       display: 'flex',
@@ -49,14 +50,22 @@ const useStyles = makeStyles((theme) => ({
     '& hover': {
       cursor: 'pointer',
     }
+  },
+  '@media (max-width: 768px)': {
+    searchContainer: {
+      '& Button': {
+        fontSize: '0.8rem',
+      }
+    }
   }
 })) 
 interface props {
   setSearchTerm: (searchTerm: string) => void;
+  getRandomMeal: () => ((url: string) => void);
 }
 const Search = () => {
   const [text, setText] = React.useState("");
-  const {setSearchTerm} = useAppContext() as props;
+  const {setSearchTerm, getRandomMeal} = useAppContext() as props;
   const classes = useStyles();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,9 +77,14 @@ const Search = () => {
     e.preventDefault();
     if(text) {
       setSearchTerm(text);
-      setText("");
+      // setText("");
     }
+  }
 
+  const handleRandomSearch = () => {
+    setText("");
+    setSearchTerm("");
+    getRandomMeal();
   }
   
   return (
@@ -79,6 +93,7 @@ const Search = () => {
       <TextField
         className={`${classes.searchInput} searchInput_mo`}
         id="search-input"
+        value={text}
         placeholder="Search for a meal or cuisine"
         onChange={handleChange}
         variant="outlined"
@@ -97,7 +112,7 @@ const Search = () => {
       <Button type={"submit"} variant="contained" color="primary" className={classes.searchButton_mo}>
         Search
       </Button>
-      <Button variant="contained" color="inherit">
+      <Button onClick={handleRandomSearch} variant="contained" color="inherit">
         Surprise me!
       </Button>
       </form>

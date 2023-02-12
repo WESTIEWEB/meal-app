@@ -8,7 +8,7 @@
     justify-content: space-between;
     align-items: center;
     height: 100%;
-    border-bottom: 4px solid #8eda4b;
+    background-image: linear-gradient(to right, #f0e9e9 -10%, rgba(178, 129, 129, 0.1));
   }
   .demo_container_u ul {
   

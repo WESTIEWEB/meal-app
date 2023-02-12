@@ -77,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
       alignItems: 'center',
     },
     cards: {
-      width: '70%',
+      width: '80% !important',
     }
   },
   '@media (max-width: 900px)': {
