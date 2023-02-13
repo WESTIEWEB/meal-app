@@ -125,7 +125,7 @@ const Meals: React.FC = () => {
             //   <img src={meal.strMealThumb} alt={meal.strMeal} />
             // </div>
             <Card variant={"outlined"} className={classes.cards} key={id}>
-              <img className={classes.img} src={image} alt={meal.strMeal} onClick={()=> selectMeal(`${id}`)} />
+              <img className={classes.img} src={image} alt={meal.strMeal} onClick={()=> selectMeal(id)} />
               <footer className={classes.footer}>
                 <h4>{title}</h4>
                 <button><BsHandThumbsUp style={{lineHeight:"1em"}}/></button>

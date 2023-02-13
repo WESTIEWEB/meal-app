@@ -50,12 +50,13 @@ const AppProvider = ({ children }:ButtonProps) => {
 
     //a fuction to fetch selected mean by id
     const selectMeal = (id:string) => {
-       if(meals.length > 0) {
-           const meal = meals.find((meal: Meal) => meal.idMeal == id)
-           setSelectedMeal(meal)
-           console.log("selected meal", selectedMeal)
-           setShowModal(true)
-       }
+        let meal = meals.find((meal: Meal) => meal.idMeal == id)
+        setSelectedMeal(meal)
+        if(selectedMeal) console.log("selected meal", selectedMeal,"meal", meal)
+        console.log(id)
+        setShowModal(true)
+
+        return
 
     }
     //responsible for closing the modal

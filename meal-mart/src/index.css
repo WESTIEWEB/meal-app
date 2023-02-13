@@ -19,3 +19,8 @@
     font-family: 'open sans', 'Roboto', sans-serif;
     font-weight: 700;
   }
+  a{
+    text-decoration: none;
+    cursor: pointer;
+    color: #4d79ff;
+  }
