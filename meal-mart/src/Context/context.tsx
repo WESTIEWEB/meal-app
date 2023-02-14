@@ -1,22 +1,12 @@
 import React, { ReactNode, Ref, useContext } from 'react';
 import { apiGet } from '../utils/axios';
 import {randomMealUrl, allMealsUrl} from '../utils/config/index'
+import { Meal } from '.';
 
 interface ButtonProps {
     children: ReactNode
   }
-  interface Meal {
-    idMeal: string;
-    strMeal: string;
-    strCategory: string;
-    strArea: string;
-    strInstructions: string;
-    strMealThumb: string;
-    strTags: string;
-    strYoutube: string;
-    strIngredient1: string;
-    strIngredient2: string;
-  }
+ 
 // type ButtonProps = {
 //     children: ReactNode;
     
@@ -29,6 +19,7 @@ const AppProvider = ({ children }:ButtonProps) => {
     const [loading, setLoading] = React.useState<boolean>(false);
     const [showModal, setShowModal] = React.useState<boolean>(false);
     const [selectedMeal, setSelectedMeal] = React.useState<Record<string, any>>({});
+    const [favorites, setFavorites] = React.useState<Array<Meal>>([]);
 
     // a function to fetch meals
     const getMeals = async (url: string) => {
@@ -68,6 +59,22 @@ const AppProvider = ({ children }:ButtonProps) => {
        getMeals(randomMealUrl);
        console.log("random meal", meals)
     }
+    //a function to handle add to favourite 
+    const addToFavorite = (id: string) => {
+        let meal = meals.find((meal: Meal) => meal.idMeal == id);
+        //checks if the meal is already in favorite list
+        const isFavorite = favorites.find((meal: Meal) => meal.idMeal === id)
+        if(isFavorite) return;
+        const updatdeFavorites = [{...favorites, meal}];
+        setFavorites([...favorites, meal]);
+        console.log("favorites", favorites)
+    }
+
+    //a function to handle remove from favourite 
+    const removeFromFavorite = (id: string) => {
+        const updateFavorites = favorites.filter((meal: Meal) => meal.idMeal !== id);
+        setFavorites(updateFavorites);
+    }
     //trigers whenevr the component mounts
     React.useEffect(() => {
         getMeals(allMealsUrl)
@@ -92,7 +99,10 @@ const AppProvider = ({ children }:ButtonProps) => {
         selectMeal,
         selectedMeal,
         setSelectedMeal,
-        closeModal
+        closeModal,
+        addToFavorite,
+        removeFromFavorite,
+        favorites      
         }}>
         {children}
     </AppContext.Provider>

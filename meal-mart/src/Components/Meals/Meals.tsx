@@ -59,6 +59,10 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: 'transparent',
       border: 'none',
       transition: 'all 0.3s ease',
+      lineHeight: '1em',
+      '& :hover': {
+        cursor: 'pointer',
+      }
     },
     '& button:hover': {
       color: "f00",
@@ -70,7 +74,8 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     height: "100%",
     cursor: "pointer",
-  },
+  }
+  ,
   '@media (max-width: 600px)': {
     card: {
       flexDirection: 'column',
@@ -91,9 +96,10 @@ interface AppContextProps {
   loading: boolean;
   getMeals: (url: string) => void;
   selectMeal: (id: string) => void;
+  addToFavorite: (id: string) => void;
 }
 const Meals: React.FC = () => {
-  const { meals, getMeals, loading, selectMeal } = useAppContext() as AppContextProps;
+  const { meals, getMeals, loading, selectMeal, addToFavorite } = useAppContext() as AppContextProps;
   const classes = useStyles();
   console.log("meals", meals);
 
@@ -128,7 +134,9 @@ const Meals: React.FC = () => {
               <img className={classes.img} src={image} alt={meal.strMeal} onClick={()=> selectMeal(id)} />
               <footer className={classes.footer}>
                 <h4>{title}</h4>
-                <button><BsHandThumbsUp style={{lineHeight:"1em"}}/></button>
+                <button onClick={() => addToFavorite(id)}>
+                  <BsHandThumbsUp />
+                </button>
               </footer>
             </Card>
           );

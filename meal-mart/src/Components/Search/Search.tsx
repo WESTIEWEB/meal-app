@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '0.5em',
     width: '20%',
     padding: '0',
-    height: '2.5em',
+    height: '2em',
     display: 'flex',
     flexDirection: 'row',
     '& ::placeHolder' :{
@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
       alignItems: 'center',
       '& button': {
         textTransform: 'none',
+        height: '2.3em !important',
       }
       
     }
