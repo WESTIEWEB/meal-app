@@ -1,0 +1,23 @@
+@media (max-width: 768px) {
+    .demo_menu-icon {
+      display: inline-block !important;
+    }
+    .demo_toolbar{
+        display: flex !important;
+        justify-content: space-between !important;
+    }
+  }
+  
+.demo_menu-items{
+    display: flex;
+}
+
+#demo_toolbar{
+    display: flex !important;
+    justify-content: space-between !important;
+}
+.demo_menu-icon{
+    display: none;
+}
+
+

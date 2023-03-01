@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
     margin: `2.3em 0 2.3em 0`,
     // background: '#FFFFFF',
     color: '#000000',
+    boxSizing: 'border-box',
     opacity: '0.44',
     borderRadius: '0.5em',
     width: '20%',

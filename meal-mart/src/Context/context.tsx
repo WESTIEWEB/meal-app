@@ -40,8 +40,14 @@ const AppProvider = ({ children }:ButtonProps) => {
     }
 
     //a fuction to fetch selected mean by id
-    const selectMeal = (id:string) => {
-        let meal = meals.find((meal: Meal) => meal.idMeal == id)
+    const selectMeal = (id:string, favoriteMeal:Meal) => {
+        let meal;
+        if(favoriteMeal) {
+            meal = favorites.find((meal:Meal) => meal.idMeal === id);
+        }
+        else {
+            meal = meals.find((meal: Meal) => meal.idMeal == id)
+        }
         setSelectedMeal(meal)
         if(selectedMeal) console.log("selected meal", selectedMeal,"meal", meal)
         console.log(id)
@@ -83,8 +89,11 @@ const AppProvider = ({ children }:ButtonProps) => {
     //trigers when the seacrh term changes
     React.useEffect(() => {
        if(searchTerm){
-        getMeals(`${allMealsUrl}${searchTerm}`)
-        console.log("meals", meals)
+        const getData = setTimeout(() => {
+            getMeals(`${allMealsUrl}${searchTerm}`)
+            console.log("meals", meals)
+        }, 2000);
+        return () => clearTimeout(getData);
        }
        else return
     }, [searchTerm])

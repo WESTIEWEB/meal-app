@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     flelexDirection: "row",
     flexWrap: "wrap",
     width: "90%",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
     gap: "1.5rem",
     margin: '2.5em 0 2.5em 0'

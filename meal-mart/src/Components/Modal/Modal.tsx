@@ -12,7 +12,7 @@ const modalStyles = makeStyles((theme) => ({
     bottom: '0',
     right: '0',
     display: 'grid',
-    zIndex: 50,
+    zIndex: 200,
     fontFamily: 'open sans',
     backgroundColor: 'rgba(0,0,0,0.85)',
     // display: 'flex',
