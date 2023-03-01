@@ -66,7 +66,7 @@ const NavBar = () => {
                         </Link>
                     </MenuItem>
                     ):( 
-                     <MenuItem className={headerClasses.loginBtn}>
+                     <MenuItem onClick={logout} className={headerClasses.loginBtn}>
                         <Link className={headerClasses.a} href='/access'>
                             Logout
                         </Link>
