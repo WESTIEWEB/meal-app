@@ -8,8 +8,6 @@ import Search from './Components/Search/Search';
 import Modal from './Components/Modal/Modal';
 import { useAppContext } from './Context/context';
 import Favorites from './Components/Favorites/Favorites';
-// import Favorites from './Components/Favorites/Favorites';
-// import Search from './Components/Search/Search';
 interface modalContext {
   showModal: boolean;
   favorites: Record<string, any>[];
